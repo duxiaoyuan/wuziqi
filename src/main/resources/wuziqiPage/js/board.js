@@ -19,10 +19,10 @@ function drawRect() {
 	context = canvas.getContext("2d");
 	context.fillStyle = "#E6C39D";
 	context.fillRect(0, 0, 1024, 768);
-	//标题  
+	//标题
 	context.fillStyle = "#00f";
 	context.font = "40px 黑体";
-	context.strokeText('我的JS五子棋', 330, 50);
+	context.strokeText('五子棋', 330, 50);
 	//新游戏  
 	context.strokeRect(790, 140, 120, 30);
 	context.fillStyle = '#00f';
