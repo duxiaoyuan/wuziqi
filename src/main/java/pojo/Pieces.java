@@ -10,5 +10,8 @@ public class Pieces {
     private Integer x_axis;
     private Integer y_axis;
     private String message;
+    private boolean able;
+
+    private Integer user_id;
 
 }
