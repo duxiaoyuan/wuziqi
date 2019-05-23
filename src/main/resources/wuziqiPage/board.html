@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<script type="text/javascript" src="js/jquery 3.4.1.js" ></script>
-		<script type="text/javascript" src="js/board.js" ></script>
+		<script src="js/jquery 3.4.1.js"></script>
+		<script src="js/board.js"></script>
 	</head>
-	<style>
-		body{ 
-			text-align:center;
-		}
-		.board{
-			margin:0 auto
-		}
-	</style>
-	<body>
-		<div class="board">
-			<canvas width="1000" height="1000" id="canvas"></canvas>
+
+	<body onload="loadInfo()">
+		<div id="main">
+			<div id="left">
+				<canvas id="myCanvas" width="640" height="640" onmousedown="play(event)"></canvas>
+			</div>
 		</div>
 	</body>
+
 </html>

@@ -12,7 +12,6 @@ public class Game {
     private Integer left_user_id;
     private Integer right_user_id;
     private Integer winner_id;
-    private List<Pieces> step = new ArrayList<>();
     private List<String> message = new ArrayList<>();
 
 }

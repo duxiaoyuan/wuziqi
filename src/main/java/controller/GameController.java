@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pojo.Game;
-import pojo.Pieces;
 import service.GameService;
 import utils.Result;
 
@@ -26,14 +25,14 @@ public class GameController {
     }
 
     @RequestMapping("moveInChess")
-    public static Object moveInChess(Game game, Pieces pieces){
-        game.getStep().add(pieces);
+    public static Object moveInChess(Game game){
+//        game.getStep().add(pieces);
         return Result.ok(game);
     }
 
     @RequestMapping("takeBack")
-    public static Object takeBack(Game game, Pieces pieces){
-        game.getStep().add(pieces);
+    public static Object takeBack(Game game){
+//        game.getStep().add(pieces);
         return Result.ok(game);
     }
 
