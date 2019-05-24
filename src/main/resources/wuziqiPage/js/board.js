@@ -6,6 +6,7 @@ img_b.src = "img/b.png";
 var canvas, context, divMsg, user;
 var isWhite = true;
 var step = new Array();
+var chessData = new Array();
 
 function loadInfo() {
 	//绘制
@@ -14,29 +15,76 @@ function loadInfo() {
 	drawRect(); // 画棋盘
 }
 
+function getChess(xb) {
+
+}
+
+function hengxiangArr(xb) {
+	var arr = new Array();
+	var heng_l = xb.x - 4;
+	var heng_r = xb.x + 4;
+	for(var index = 0; index < step.length; index++) {
+//		alert("step[index].y == xb.y ==> step[index].y:"+step[index].y+"xb.y:"+xb.y+(step[index].y == xb.y))
+		if(step[index].y == xb.y && step[index].x <= heng_r && step[index].x >= heng_l) {
+			arr.push(step[index]);
+		}
+	}
+	console.log("hengxiangArr:")
+	console.log(arr.sort(compare('x')))
+	return arr.sort(compare('x'));
+}
+
+function compare(property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}
+
+function ifOver(xb) {
+	var arr = hengxiangArr(xb);
+	var count = 0;
+	for (var i=0; i<arr.length; i++) {
+		if(arr[i].isWhite == xb.isWhite){
+			count++;
+		}else{
+			count=0
+		}
+		if(count==5){
+			return true;
+		}
+	}
+	return false;
+}
+
 function play(e) {
 	var x = e.offsetX;
 	var y = e.offsetY;
 	var xb = changeScreenXYtoArrayXY(x, y);
-	//	console.log(xb);
+	console.log("xb:")
+	console.log(xb);
+	console.log("step:")
 	console.log(step);
-	for(var i=0; i<step.length; i++){
+	for(var i = 0; i < step.length; i++) {
 		var value = step[i];
-		if(xb.i == value.i && xb.j == value.j && step.length > 0) {
-			alert("不行");
+		if(xb.x == value.x && xb.y == value.y && step.length > 0) {
+			alert("buxing");
 			return;
 		}
 	}
-	alert("可以");
 	step.push(xb);
-	var zb = changeArrayXYtoScreenXY(xb.i, xb.j);
-	drawChess(isWhite, zb.x, zb.y);
+	var zb = changeArrayXYtoScreenXY(xb.x, xb.y);
+	drawChess(isWhite, zb.y, zb.x);
+	if(ifOver(xb)){
+		alert("游戏结束");
+	}
 }
 
 //绘制棋子
 function drawChess(type, x, y) {
-	alert("落子")
-	//	console.log(type);
+	//	alert("落子")
+	console.log(type);
 	if(type) {
 		context.drawImage(img_w, x - 18, y - 18);
 		isWhite = false;
@@ -47,25 +95,25 @@ function drawChess(type, x, y) {
 	}
 }
 //将屏幕坐标转换为数组下标
-function changeScreenXYtoArrayXY(x, y) {
-	var xn = parseInt((x - 40) / 40);
-	var yn = parseInt((y - 40) / 40);
+function changeScreenXYtoArrayXY(i, j) {
+	var xn = parseInt((i - 40) / 40);
+	var yn = parseInt((j - 40) / 40);
 	var xb = xn * 40 + 40;
 	var xe = (xn + 1) * 40 + 40;
 	var yb = yn * 40 + 40;
 	var ye = (yn + 1) * 40 + 40;
 	//矫正x坐标到交叉点的x值，并计算下标xn
-	if((xe - x) > (x - xb)) {
-		x = xb;
+	if((xe - i) > (i - xb)) {
+		i = xb;
 	} else {
-		x = xe;
+		i = xe;
 		xn++;
 	}
 	//矫正y坐标到交叉点的y值，并计算下标yn
-	if((ye - y) > (y - yb)) {
-		y = yb;
+	if((ye - j) > (j - yb)) {
+		j = yb;
 	} else {
-		y = ye;
+		j = ye;
 		yn++;
 	}
 	//边界坐标处理
@@ -74,15 +122,17 @@ function changeScreenXYtoArrayXY(x, y) {
 	yn = yn < 0 ? 0 : yn;
 	yn = yn > 14 ? 14 : yn;
 	return {
-		i: xn,
-		j: yn
+		x: xn,
+		y: yn,
+		isWhite: isWhite
 	};
 }
 //将数组下标转换为屏幕坐标
 function changeArrayXYtoScreenXY(i, j) {
 	return {
-		x: (i * 40 + 40),
-		y: (j * 40 + 40)
+		x: (j * 40 + 40),
+		y: (i * 40 + 40),
+		isWhite: isWhite
 	};
 }
 
