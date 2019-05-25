@@ -1,5 +1,8 @@
 package pojo.collection;
 
+import lombok.Data;
+
+@Data
 public class Pieces {
 
     private Integer x;
