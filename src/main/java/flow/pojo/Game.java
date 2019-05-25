@@ -1,4 +1,4 @@
-package pojo;
+package flow.pojo;
 
 import lombok.Data;
 
