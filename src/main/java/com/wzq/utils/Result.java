@@ -1,4 +1,4 @@
-package utils;
+package com.wzq.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

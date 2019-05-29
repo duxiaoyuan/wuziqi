@@ -1,4 +1,4 @@
-package pojo;
+package com.wzq.flow.pojo;
 
 import lombok.Data;
 
