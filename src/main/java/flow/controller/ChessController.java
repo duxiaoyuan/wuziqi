@@ -15,7 +15,7 @@ import utils.Result;
 public class ChessController extends Controller {
 
 	public void hello(){
-		renderJson("hello");
+		render("board.html");
 	}
 
 	public void moveInChess(){
@@ -24,7 +24,7 @@ public class ChessController extends Controller {
 		Pieces pieces = getBean(Pieces.class);
 		System.out.println("chess=>"+chess);
 //		System.out.println(pieces);
-		renderJson(Result.ok(chess));
+		renderJson(Result.ok("ok"));
 	}
 
 }

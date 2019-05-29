@@ -24,7 +24,8 @@ public class jConfig extends JFinalConfig {
 
 	@Override
 	public void configRoute(Routes routes) {
-		routes.add("/chess", ChessController.class);
+		routes.setBaseViewPath("/wuziqiPage");
+		routes.add("/", ChessController.class);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class jConfig extends JFinalConfig {
 
 	@Override
 	public void configHandler(Handlers handlers) {
-
+		handlers.add()
 	}
 }
 
